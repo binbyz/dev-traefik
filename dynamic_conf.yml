@@ -4,14 +4,12 @@ http:
       rule: "Host(`vape.localhost`)"
       service: "vape-service"
       entryPoints:
-        - "websecure"
-      tls: {}
+        - "web"
     bff-router:
       rule: "Host(`bff.localhost`)"
       service: "bff-service"
       entryPoints:
-        - "websecure"
-      tls: {}
+        - "web"
 
   services:
     vape-service:
