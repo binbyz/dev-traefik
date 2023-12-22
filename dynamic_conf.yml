@@ -1,0 +1,24 @@
+http:
+  routers:
+    vape-router:
+      rule: "Host(`vape.localhost`)"
+      service: "vape-service"
+      entryPoints:
+        - "websecure"
+      tls: {}
+    bff-router:
+      rule: "Host(`bff.localhost`)"
+      service: "bff-service"
+      entryPoints:
+        - "websecure"
+      tls: {}
+
+  services:
+    vape-service:
+      loadBalancer:
+        servers:
+          - url: "http://host.docker.internal:81"
+    bff-service:
+      loadBalancer:
+        servers:
+          - url: "http://host.docker.internal:82"

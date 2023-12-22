@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  traefik:
+    image: traefik:latest
+    command:
+      - "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./traefik.yml:/etc/traefik/traefik.yml:ro"
+      - "./dynamic_conf.yml:/etc/traefik/dynamic_conf.yml:ro"
+      - "./cert/bff.localhost.crt:/etc/traefik/cert/bff.localhost.crt"
+      - "./cert/bff.localhost.key:/etc/traefik/cert/bff.localhost.key"
+      - "./cert/vape.localhost.crt:/etc/traefik/cert/vape.localhost.crt"
+      - "./cert/vape.localhost.key:/etc/traefik/cert/vape.localhost.key"
