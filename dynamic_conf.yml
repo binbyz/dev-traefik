@@ -1,8 +1,8 @@
 http:
   routers:
     vape-router:
-      rule: "Host(`vape.localhost`)"
-      service: "vape-service"
+      rule: "Host(`vaper.localhost`)"
+      service: "vaper-service"
       entryPoints:
         - "web"
     bff-router:
